@@ -1,0 +1,29 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended", "airbnb"],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/function-component-definition": "off"
+  }
+  ,"settings": {
+    "import/core-modules": ["@pmmmwh/react-refresh-webpack-plugin","webpack-config-utils", "styled-components"],
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.js"
+      }
+    }
+  },
+  "globals": { // api 모듈사용을 eslint에 적용시키기 위한 설정, tsPandoApi는 임시로 사용
+    "tsPandoApi": "readonly"
+  }
+}
