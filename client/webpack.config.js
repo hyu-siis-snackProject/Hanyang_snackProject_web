@@ -14,6 +14,7 @@ module.exports = {
     alias: {
       src: path.resolve(__dirname, 'src'),
       public: path.resolve(__dirname, 'public'),
+      images: path.resolve(__dirname, 'public/images'),
       components: path.resolve(__dirname, 'src/components'),
       styles: path.resolve(__dirname, 'src/styles'),
     },
@@ -35,6 +36,19 @@ module.exports = {
       {
         test: /\.module\.css$/i,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192, // 지정한 크기보다 작은 이미지는 base64로 인라인화됨
+              fallback: 'file-loader', // 지정한 크기 이상인 이미지는 file-loader로 처리
+              outputPath: 'images', // 이미지를 저장할 경로 설정
+            },
+          },
+        ],
       },
     ],
   },
